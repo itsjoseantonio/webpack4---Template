@@ -7,6 +7,6 @@ let arreglo = [1,2,3,4]
 for(let i in arreglo){
     console.log(arreglo[i])
 }
-testing();
+testing(); 
 
 console.log(fakeData)
