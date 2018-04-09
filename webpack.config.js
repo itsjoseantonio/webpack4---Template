@@ -43,7 +43,14 @@ module.exports = {
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
         port: 3000,
-        open:true
+        //abre el servidor, ejecutando el html en el browser que tengamos por defecto
+        open: true,
+        // indicar a webpack que html usar, como index, funciona siempre y cuando no exista un html con nombre index
+        // ya que esta funcion se ejecuta si es que le pasa algo al archivo principal, en este caso index.html
+        // al no tener este archivo no sabe a donde apuntar y se puede elegir cual cargar
+        historyApiFallback: {
+            index: 'another.html'
+        }
       },
     plugins:[
         new ExtractTextPlugin('css/[name].css'),
