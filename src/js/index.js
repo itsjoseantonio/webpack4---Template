@@ -1,5 +1,11 @@
 import fakeData from '../json/fakedata.json'
 import ubigeo from '../json/ubigeo.json'
+const { fillUbigeo } = require("./ubigeo.js");
+
+
+fillUbigeo(ubigeo,'departamento','provincia','distrito')
+
+
 /*import '../style/index.sass';
 
 let testing = (()=>console.log('its working'))
@@ -224,31 +230,6 @@ fetch('http://webinei.inei.gob.pe:8080/sisconcode/ubigeo/buscarDepartamentosPorV
 
 */
 
-const ubigeoData = new Promise((resolve, reject) => {
-    resolve(ubigeo)
-}).then(data => {
-    const departamento = document.getElementById('departamento');
-    let departoption = document.createElement('option')
-    let departContent = document.createTextNode('Seleccione')
-    departoption.appendChild(departContent)
-    departamento.appendChild(departoption)
-    for (let index in data) {
-        departoption = document.createElement('option')
-        departoption.setAttribute('value', data[index].idDepart)
-        departContent = document.createTextNode(data[index].nomDepart)
-        departoption.appendChild(departContent)
-        departamento.appendChild(departoption)
-    }
 
-    const provin = document.getElementById('provincia')
-    departamento.addEventListener('change', (e) => {
-        let opciones = provin.querySelectorAll('option');
-        provin.remove(opciones)
-        let provincias = data[parseInt(e.currentTarget.value)-1].provincias
-        for(let index in provincias){
-            provin.insertAdjacentHTML('beforeend', `<option value="${provincias[index].idProvincia}">${provincias[index].nomProvincia}</option>`)
-            console.log(provincias[index])
-        }
-    })
-})
+
 
