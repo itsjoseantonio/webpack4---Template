@@ -240,10 +240,10 @@ const ubigeoData = new Promise((resolve, reject) => {
         departamento.appendChild(departoption)
     }
 
-    const depart = document.getElementById('departamento')
     const provin = document.getElementById('provincia')
-    depart.addEventListener('change', (e) => {
-        provin.remove('option')
+    departamento.addEventListener('change', (e) => {
+        let opciones = provin.querySelectorAll('option');
+        provin.remove(opciones)
         let provincias = data[parseInt(e.currentTarget.value)-1].provincias
         for(let index in provincias){
             provin.insertAdjacentHTML('beforeend', `<option value="${provincias[index].idProvincia}">${provincias[index].nomProvincia}</option>`)
