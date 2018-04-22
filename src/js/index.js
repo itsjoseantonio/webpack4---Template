@@ -1,3 +1,4 @@
+import '../style/index.sass';
 import fakeData from '../json/fakedata.json'
 import ubigeo from '../json/ubigeo.json'
 const { fillUbigeo } = require("./ubigeo.js");
@@ -6,8 +7,7 @@ const { fillUbigeo } = require("./ubigeo.js");
 fillUbigeo(ubigeo,'departamento','provincia','distrito')
 
 
-/*import '../style/index.sass';
-
+/*
 let testing = (()=>console.log('its working'))
 let arreglo = [1,2,3,4]
 
