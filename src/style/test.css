@@ -1,10 +1,10 @@
 @import './otro.css';
 
-/*$link:"http://cms.movistar.com.pe/";*/
+/*$link: "http://cms.movistar.com.pe/";*/
 
 
 h1{
-    font-size: responsive 10px 60px;
+    font-size: responsive 10px 80px;
 }
 
 .caja{
@@ -13,10 +13,17 @@ h1{
     background: red;
     display: flex;
     align-items: center;
-    /*background-image: url($link+/documents/80379/81917/sticker1.png/a6d031c7-4941-4f92-aee5-342024fe6b31?t=1480544743159);*/
+    justify-content: center;
+    /*background-image: url($link'/documents/80379/81917/sticker1.png/a6d031c7-4941-4f92-aee5-342024fe6b31?t=1480544743159');*/
+    @media (max-width: 500px) {
+        background: green;
+    }
     & .inside{
         background-color: green;
         width: 50%;
         height: 50%;
+        @media (max-width: 500px) {
+            background: red;
+        }
     }
 }

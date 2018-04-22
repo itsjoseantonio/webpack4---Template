@@ -1,17 +1,18 @@
 module.exports = function () {
     return {
+        parser: 'postcss-scss',
         plugins: [
-        //require('postcss-alias')({}),
         require('rucksack-css')({}),
-        require('postcss-advanced-variables')({}),
+        require('precss')({}),//its not working
+        require('postcss-advanced-variables')({}),//its not working
         require('postcss-cssnext')({
-            features: {
-              autoprefixer: {
-                grid: true,
-                flexbox: false,
-              }
+          features: {
+            autoprefixer: {
+              grid: true,
+              flexbox: false,
             }
-          })
+          }
+        })
         ]
     }
 };
