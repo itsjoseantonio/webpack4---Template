@@ -1,10 +1,14 @@
+import '../style/test.css';
+//import '../style/index.sass';
+
+/*
 import fakeData from '../json/fakedata.json'
 import ubigeo from '../json/ubigeo.json'
 const { fillUbigeo } = require("./ubigeo.js");
 
 
 fillUbigeo(ubigeo,'departamento','provincia','distrito')
-
+*/
 
 /*import '../style/index.sass';
 

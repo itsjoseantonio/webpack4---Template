@@ -1,4 +1,5 @@
 @import './another.sass'
+$url: "";
 
 body
     background:lightblue
@@ -6,3 +7,17 @@ body
     align-items: center
     justify-content: center
     min-height: 100vh
+    background-image: url($url+"/documents/80379/81917/sticker1.png/a6d031c7-4941-4f92-aee5-342024fe6b31?t=1480544743159")
+
+
+.caja{
+    width: 300px
+    height: 300px
+    background: red
+    display: flex
+    align-items: center
+    background-image: url($link+"/documents/80379/81917/sticker1.png/a6d031c7-4941-4f92-aee5-342024fe6b31?t=1480544743159")
+    & .inside{
+        background-color: green
+        width: 50%
+        height: 50%

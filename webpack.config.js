@@ -12,11 +12,24 @@ module.exports = {
     },
     module:{
         rules: [
+            //ARCHIVOS DE ESTILOS
             {
+                // test: que tipo de archivo quiero reconocer,
+                // use: que loader se va a encargar del archivo
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
-                    use: 'css-loader'
-                })
+                  // ['style-loader','css-loader']
+                  // fallback: 'style-loader',
+                  use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                            }
+                        },
+                        { loader: 'postcss-loader', options: { sourceMap: true } }
+                    ]
+                }),
             },
             {
                 test: /\.(scss|sass)$/,
@@ -24,10 +37,12 @@ module.exports = {
                     use: ['css-loader','sass-loader']
                 })
             },
+            //ARCHIVOS PARA TEMPLATE
             {
                 test: /\.pug$/,
                 use: ['html-loader','pug-html-loader']
             },
+            //ARCHIVOS DE PROGRAMACION
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
@@ -56,7 +71,8 @@ module.exports = {
         new ExtractTextPlugin('css/[name].css'),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/pug/index.pug',
+            //template: './src/pug/index.pug',
+            template: './src/pug/html.html'
         }),
         /*new HtmlWebpackPlugin({
             filename: 'another.html',
