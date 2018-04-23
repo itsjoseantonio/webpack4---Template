@@ -32,5 +32,9 @@
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.2"
+  },
+  "dependencies": {
+    "gsap": "^1.20.4",
+    "jquery": "^3.3.1"
   }
 }
