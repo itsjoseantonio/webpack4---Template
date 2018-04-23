@@ -3,8 +3,9 @@ import { TimelineMax, TweenMax } from "gsap";
 import "../style/index.sass";
 import fakeData from "../json/fakedata.json";
 import ubigeo from "../json/ubigeo.json";
+import test from "./vendor/test";
 
-const { fillUbigeo } = require("./ubigeo.js");
+import { fillUbigeo } from "./ubigeo.js";
 
 fillUbigeo(ubigeo, "departamento", "provincia", "distrito");
 
@@ -13,6 +14,8 @@ $("#button").on("click", function() {
 });
 
 const tl = new TimelineMax();
+
+test.test();
 
 /*
 let testing = (()=>console.log('its working'))
