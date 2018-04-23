@@ -1,0 +1,58 @@
+/****************DESKTOPS DEVICES*****************/
+@mixin desktop {
+    @media (max-width: 1920px) {
+      @content;
+    }
+  }
+  @mixin laptop1440 {
+    @media (max-width: 1440px) {
+      @content;
+    }
+  }
+  @mixin laptop1366 {
+    @media (max-width: 1366px) {
+      @content;
+    }
+  }
+  @mixin mac {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  }
+/****************TABLET DEVICES*****************/
+@mixin tablet1024 {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+@mixin tablet800 {
+    @media (max-width: 800px) {
+      @content;
+    }
+  }
+@mixin tablet768 {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+/****************MOBILE DEVICES*****************/
+@mixin mobile414 {
+    @media (max-width: 414px) {
+      @content;
+    }
+  }
+  @mixin mobile375 {
+    @media (max-width: 375px) {
+      @content;
+    }
+  }
+@mixin mobile360 {
+    @media (max-width: 360px) {
+      @content;
+    }
+  }
+  @mixin mobile320 {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }

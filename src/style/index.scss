@@ -1,0 +1,61 @@
+$url: "http://cms.movistar.com.pe";
+//$url: "";
+
+@import './utilities/fonts.scss';
+@import './utilities/media-queries.scss';
+
+@include desktop{
+    body{
+        background: red;
+    }
+}
+@include laptop1440{
+    body{
+        background: blue;
+    }
+}
+@include laptop1366{
+    body{
+        background: green;
+    }
+}
+@include mac{
+    body{
+        background: purple;
+    }
+}
+@include tablet1024{
+    body{
+        background: orange;
+    }
+}
+@include tablet800{
+    body{
+        background: lightblue;
+    }
+}
+@include tablet768{
+    body{
+        background: peru;
+    }
+}
+@include mobile414{
+    body{
+        background: yellowgreen;
+    }
+}
+@include mobile375{
+    body{
+        background: pink;
+    }
+}
+@include mobile360{
+    body{
+        background: brown;
+    }
+}
+@include mobile320{
+    body{
+        background: black;
+    }
+}
