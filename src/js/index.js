@@ -1,11 +1,18 @@
-import '../style/index.sass';
-import fakeData from '../json/fakedata.json'
-import ubigeo from '../json/ubigeo.json'
+import $ from "jquery";
+import { TimelineMax, TweenMax } from "gsap";
+import "../style/index.sass";
+import fakeData from "../json/fakedata.json";
+import ubigeo from "../json/ubigeo.json";
+
 const { fillUbigeo } = require("./ubigeo.js");
 
+fillUbigeo(ubigeo, "departamento", "provincia", "distrito");
 
-fillUbigeo(ubigeo,'departamento','provincia','distrito')
+$("#button").on("click", function() {
+  tl.to($("#prueba"), 1, { opacity: 0.5 }).to($("#prueba"), 1, { scale: 0.5 });
+});
 
+const tl = new TimelineMax();
 
 /*
 let testing = (()=>console.log('its working'))
@@ -17,7 +24,6 @@ for(let i in arreglo){
 testing(); 
 
 console.log(fakeData)*/
-
 
 /*
 
@@ -73,7 +79,6 @@ function getArtist(){
         })
     })
 }*/
-
 
 /*  PROMISE RACE COMPARA Y SOLO EJECUTA LA PROMESA QUE SE RESUELVA MAS RAPIDO*/
 
@@ -229,7 +234,3 @@ fetch('http://webinei.inei.gob.pe:8080/sisconcode/ubigeo/buscarDepartamentosPorV
     })
 
 */
-
-
-
-

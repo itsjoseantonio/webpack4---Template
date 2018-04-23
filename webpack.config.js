@@ -21,7 +21,17 @@ module.exports = {
       {
         test: /\.(scss|sass)$/,
         use: ExtractTextPlugin.extract({
-          use: ["css-loader", "sass-loader"]
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                minimize: true
+              }
+            },
+            {
+              loader: "sass-loader"
+            }
+          ]
         })
       },
       {
@@ -70,5 +80,16 @@ module.exports = {
             filename: 'another.html',
             template: './src/pug/another.pug',
         })*/
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all"
+        }
+      }
+    }
+  }
 };
