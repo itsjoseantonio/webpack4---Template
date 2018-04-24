@@ -6,7 +6,9 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "dev": "npm run clean && webpack --mode development",
+    "dev1": "webpack --mode development",
     "prod": "npm run clean && webpack --mode production",
+    "prod1": "webpack --mode production",
     "server": "webpack-dev-server --mode development"
   },
   "keywords": [

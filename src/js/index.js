@@ -9,7 +9,12 @@ import { fillUbigeo } from "./ubigeo.js";
 fillUbigeo(ubigeo, "departamento", "provincia", "distrito");
 
 $("#button").on("click", function() {
-    tl.to($("#prueba"), 1, { opacity: 0.5 }).to($("#prueba"), 1, { scale: 0.5 });
+    tl
+        .to($("#prueba"), 0.5, { opacity: 0.5 })
+        .to($("#prueba"), 0.5, { scale: 0.5 })
+        .to($("#prueba"), 0.5, { rotation: 360 })
+        .to($("#prueba"), 0.5, { opacity: 1 })
+        .to($("#prueba"), 0.5, { scale: 1.5 });
 });
 
 const tl = new TimelineMax();
