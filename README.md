@@ -87,7 +87,7 @@ Acá le indicaremos a webpack donde queremos que coloque los archivos bundle
     filename: "js/[name].js"
   }
 ```
-- **output** tiene su propia opcion que se llama ```path```, en donde le indicamos que a partir de la carpeta en donde se encuentra el archivo webpack.config.js (```"__dirname"```), cree una nueva carpeta llamada **dist**
+- **output** tiene su propia opcion que se llama ```path```, en donde le indicamos que a partir de la carpeta en donde se encuentra el archivo webpack.config.js (```__dirname```), cree una nueva carpeta llamada **dist**
 - con **filename** le indicamos que nombre tendra nuestro archivo, y que a partir de la carpeta **dist**, cree una subcarpeta **js** y dentro coloque el archivo bundle.
 - **[name]** toma el nombre del entry, si es que se colocó, en caso no tuviera nombre el entry, toma por defecto bundle, se puede quitar el parametro ```[name]``` y colocar un nombre especifico, ejemplo:
 ```bash
@@ -97,3 +97,105 @@ Acá le indicaremos a webpack donde queremos que coloque los archivos bundle
   }
 ```
 El archivo resultante en la carpeta dist se llamaria ```prueba.js```
+### Module
+En esta punto es en donde colocaremos todas las reglas que se utilizarán, para que webpack pueda interpertar nuestros archivos.
+Los soportados en este archivos son:
+- [css](https://github.com/webpack-contrib/css-loader)
+- [scss/sass](https://github.com/webpack-contrib/sass-loader)
+- [pug](https://github.com/willyelm/pug-html-loader)
+- [html](https://github.com/jantimon/html-webpack-plugin)
+- [jpg/png/svg](https://github.com/webpack-contrib/file-loader)
+- json
+- [js(es5/es6)](https://github.com/babel/babel-loader)
+### Dev-Server
+Este es el servidor local que crear ```webpack-dev-server``` usando node.js
+- **ContentBase** acá se le tiene que indicar donde se encuentran los archivos que va a servir, en este caso, que tome todos los archivos de la carpeta ```./dist```
+```bash
+contentBase: path.resolve(__dirname, "dist")
+```
+- **Port** este punto sirve para indicarle a webpack en que puerto va levantar el servidor
+- **Open** por defecto en false, le indica a webpack que cuando levante el servidor, tambien abra el localhost en nuestro browser predeterminado
+- **historyApiFallback** esta función es un poco más opcional, le indica a webpack con su atributo **index** cual va a ser el html que se va a ejecutar en caso ocurra algun problema con el template principal
+  - **nota** *historyApiFallback* siempre interpreta el archivo ```index.html``` como el principal, en caso no existiera este archivo, funcionaria el template que coloquemos en **index**
+```
+    historyApiFallback: {
+      index: "another.html"
+    }
+```
+### Plugins
+En este punto, podremos agregar cualquier tipo de plugin que sea para webpack, para poder utilizar los plugin es necesario importarlos
+```
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+```
+#### [ExtractTextPlugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)
+Este plugin permite poder tener nuestros archivos **css** en un archivo totalmente aparte
+```
+new ExtractTextPlugin("css/[name].css")
+```
+tenemos que indicale donde queremos que guarde los archivos en este caso seria ```./dist/css/[archivo].css```
+#### [HtmlWebpackPlugin](https://github.com/jantimon/html-webpack-plugin)
+Este plugin permite poder tener un tamplate de base y agregarle todos nuestros archivos sean *.css/js/imágenes*
+- **filename** le indicamos donde queremos que guarde el archivo
+  ```
+  filename: "index.html"
+  ```
+  en este caso lo guardará en ```./dist/index.html```
+- **template** acá le indicamos de donde queremos que saque el template
+  ```
+  template: "./src/pug/index.pug"
+  ```
+  en este caso el indicamos que lo saque de nuestra carpeta de desarrollo src
+- **nota** en caso se quiera tener más de un template, se puede realizar simplemente creando una nueva instancia del plugin
+  ```
+    new HtmlWebpackPlugin({
+        filename: "index1.html",
+        template: "./src/pug/template1.pug"
+    })
+    new HtmlWebpackPlugin({
+        filename: "index2.html",
+        template: "./src/html/template1.html"
+    })
+  ```
+  como se puede ver en el ejemplo, ```HtmlWebpackPlugin``` puede tomar un template de *pug o html* y de distintas rutas, en nuestra carpeta ```./dist``` quedaria así
+  ```
+  --dist
+  ----css
+  ----js
+  --index1.html
+  --index2.html
+  ```
+### Optimization
+Esta opción es la que nos permite poder generar los *vendors* juntar todos los plugins de js que se utilizen y nos mezclarlos con nuestro archivos ```index.js```, para poder mantenerlo limpio
+- **test** acá le vamos a indicar de donde queremos que saque lo *vendors*
+  - Esta configurado para que los tome de 2 formas
+    - La primera es por el archivo ```js/vendor/```, todos los plugins que se coloquen dentro de esta carpeta se incluirán en el archivo ```vendors.js```
+    - La segunda forma es agregando los archivos como dependencias del proyecto, dentro del archivo ```package.json```
+      ```
+        "dependencies": {
+        "gsap": "^1.20.4",
+        "jquery": "^3.3.1"
+        }
+      ```
+      en este ejemplo eh agregado 2 dependencias **jquery** y **gsap**, la forma de poder utilizarlas es simplemente importandolas dentro del js
+      ```Archivo index.js```
+      ```
+        import $ from "jquery";
+        import { TimelineMax, TweenMax } from "gsap";
+      ```
+      en caso no los importaramos, no se agregarian al archivo ```vendors.js```
+- **name** acá le indicaremos a webpack, como queremos que se llame el archivo resultante ```name: "vendors"```
+
+## IMPORTANTE
+- Para poder generar correctamente el archivo de estilos, es necesario importar el archivo de estilos principal ```index.scss``` dentro del archivo ```index.js```
+```
+import "../style/index.scss
+```
+- Si se quiere agregar los archivos *css* y *js* al archivo template html/pug, no es necesario, el plugin **HtmlWebpackPlugin** ya lo hace por nosotros, solo se deberian agregar las imágenes que se quieran dentro del template html/pug
+- Si se quiere usar un *json* como solo basta con importarlo dentro del archivo js ```import ubigeo from "../json/ubigeo.json"```
+
+## Adiciones
+Se ha agregado una librería de ubigeo
+[**Ubigeo-Peru**](https://github.com/TieicH/Ubigeo-Peru)
+
+
