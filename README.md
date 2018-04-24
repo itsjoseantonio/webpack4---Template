@@ -191,8 +191,8 @@ Esta opción es la que nos permite poder generar los *vendors* juntar todos los 
 ```
 import "../style/index.scss
 ```
-- Si se quiere agregar los archivos *css* y *js* al archivo template html/pug, no es necesario, el plugin **HtmlWebpackPlugin** ya lo hace por nosotros, solo se deberian agregar las imágenes que se quieran dentro del template html/pug
-- Si se quiere usar un *json* como solo basta con importarlo dentro del archivo js ```import ubigeo from "../json/ubigeo.json"```
+- Si se quiere agregar los archivos *css* y *js* al archivo template html/pug, no es necesario, el plugin **HtmlWebpackPlugin** ya lo hace por nosotros, solo se deberian agregar las imágenes que se requieran dentro del template html/pug
+- Si se quiere usar un *json* como data solo basta con importarlo dentro del archivo js ```import json from "../json/archivo.json"```
 
 ## Adiciones
 Se ha agregado una librería de ubigeo
