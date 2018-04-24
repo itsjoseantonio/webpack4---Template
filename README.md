@@ -193,6 +193,7 @@ import "../style/index.scss
 ```
 - Si se quiere agregar los archivos *css* y *js* al archivo template html/pug, no es necesario, el plugin **HtmlWebpackPlugin** ya lo hace por nosotros, solo se deberian agregar las imágenes que se requieran dentro del template html/pug
 - Si se quiere usar un *json* como data solo basta con importarlo dentro del archivo js ```import json from "../json/archivo.json"```
+- Se ha agregado un archivo de configuración ```prettier.config.js``` este archivo permite poder identar correctamente los archivos, solo basta con instalarlo en tu editor de codigo preferido [**Prettier.io**](https://prettier.io/)
 
 ## Adiciones
 Se ha agregado una librería de ubigeo
