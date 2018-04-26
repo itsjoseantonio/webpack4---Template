@@ -1,6 +1,16 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+const isProd = process.env.NODE_ENV === "production";
+const scssDev = ["style-loader", "css-loader", "sass-loader"];
+const scssProd = ExtractTextPlugin.extract({
+    use: [{ loader: "css-loader", options: { minimize: true } }, { loader: "sass-loader" }]
+});
+const cssDev = ["style-loader", "css-loader"];
+const cssProd = ExtractTextPlugin.extract({ use: "css-loader" });
+const scssConfig = isProd ? scssProd : scssDev;
+const cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = {
     entry: {
@@ -14,25 +24,11 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    use: "css-loader"
-                })
+                use: cssConfig
             },
             {
                 test: /\.(scss|sass)$/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        {
-                            loader: "css-loader",
-                            options: {
-                                minimize: true
-                            }
-                        },
-                        {
-                            loader: "sass-loader"
-                        }
-                    ]
-                })
+                use: scssConfig
             },
             {
                 test: /\.pug$/,
@@ -59,6 +55,7 @@ module.exports = {
         ]
     },
     devServer: {
+        hot: true,
         contentBase: path.resolve(__dirname, "dist"),
         port: 3000,
         open: true,
@@ -67,7 +64,12 @@ module.exports = {
         }
     },
     plugins: [
-        new ExtractTextPlugin("css/[name].css"),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
+        new ExtractTextPlugin({
+            filename: "css/[name].css",
+            disable: !isProd
+        }),
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: "./src/pug/index.pug"

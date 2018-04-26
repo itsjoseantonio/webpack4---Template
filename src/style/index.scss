@@ -3,6 +3,10 @@ $url: "http://cms.movistar.com.pe";
 @import './utilities/fonts.scss';
 @import './utilities/media-queries.scss';
 
+body{
+    background: blue;
+}
+
 /*
 @include desktop{
     body{
