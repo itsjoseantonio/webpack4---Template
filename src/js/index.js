@@ -16,6 +16,10 @@ $('#button').on('click', function() {
     .to($('#prueba'), 0.5, { opacity: 1 })
     .to($('#prueba'), 0.5, { scale: 1.5 });
 });
-
+$('#prueba').css({ opacity: 1 });
 const tl = new TimelineMax();
 test.test();
+
+if (module.hot) {
+  module.hot.accept();
+}
