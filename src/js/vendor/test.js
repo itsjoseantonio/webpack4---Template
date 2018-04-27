@@ -1,5 +1,5 @@
 module.exports = {
-    test: function() {
-        alert("vengo del archivo vendors.js");
-    }
+  test: function() {
+    alert('vengo del archivo vendors.js');
+  },
 };
