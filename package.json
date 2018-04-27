@@ -5,12 +5,10 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf ./dist",
-    "prod": "npm run clean && NODE_ENV=production webpack --mode production",
+    "prod": "set NODE_ENV=production && npm run clean &&  webpack --mode production",
     "dev": "webpack-dev-server --mode development"
   },
-  "keywords": [
-    "webpack"
-  ],
+  "keywords": ["webpack"],
   "author": "TH",
   "license": "MIT",
   "devDependencies": {
