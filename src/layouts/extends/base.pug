@@ -1,0 +1,31 @@
+doctype html
+html(lang="es-ES")
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' ,content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title Movistar
+    meta(name='description', content="Movistar")
+    meta(name='keywords', content="")
+    meta(name='author', content="")
+    //- Evitar Cache
+    meta(http-equiv='Expires', content='0')
+    meta(http-equiv='Last-Modified', content='0')
+    meta(http-equiv='Cache-Control', content='no-cache, mustrevalidate')
+    meta(http-equiv='Pragma', content='no-cache')
+
+    //- Favicon
+    link(href='http://www.movistar.com.pe/colportal-peru-v2-theme/images/favicon.ico', rel='Shortcut Icon')
+
+  body
+    //- url = "http://cms.movistar.com.pe" //- Desarrollo
+    - url = "" //- Producion CMS
+
+    #mainContainer
+      block header
+      #container
+        block content
+      block footer
+
+    //- Dependencias del CMS Liferay
+    script(src="http://cdn.alloyui.com/2.0.0/aui/aui-min.js")

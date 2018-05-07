@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { TimelineMax, TweenMax } from 'gsap';
 import test from './vendor/test';
 import ubigeo from '../json/ubigeo.json';
-import { fillUbigeo } from './ubigeo.js';
+import { fillUbigeo } from './libs/ubigeo.js';
 
 fillUbigeo(ubigeo, 'departamento', 'provincia', 'distrito');
 
