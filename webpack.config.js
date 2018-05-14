@@ -2,6 +2,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 const isProd = process.env.NODE_ENV != undefined;
 const scssDev = ['style-loader', 'css-loader', 'sass-loader'];
 const scssProd = ExtractTextPlugin.extract({
@@ -39,7 +40,7 @@ module.exports = {
         use: ['html-loader', 'pug-html-loader'],
       },
       {
-        test: /\.(jpg|png|svg)$/,
+        test: /\.(jpg|png|svg|gif)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
@@ -77,6 +78,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/layouts/index.pug',
+    }),
+    new ServiceWorkerWebpackPlugin({
+      entry: path.resolve(__dirname, 'src/js/service-worker/sw.js'),
     }),
   ],
   optimization: {

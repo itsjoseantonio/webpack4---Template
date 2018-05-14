@@ -1,4 +1,5 @@
 import '../style/index.scss';
+import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
 import $ from 'jquery';
 import { TimelineMax, TweenMax } from 'gsap';
@@ -6,7 +7,7 @@ import test from './vendor/test';
 import ubigeo from '../json/ubigeo.json';
 import { fillUbigeo } from './libs/ubigeo.js';
 
-fillUbigeo(ubigeo, 'departamento', 'provincia', 'distrito');
+//fillUbigeo(ubigeo, 'departamento', 'provincia', 'distrito');
 
 $('#button').on('click', function() {
   tl
@@ -19,6 +20,21 @@ $('#button').on('click', function() {
 $('#prueba').css({ opacity: 1 });
 const tl = new TimelineMax();
 test.test();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      })
+      .catch(function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+  });
+}
 
 if (module.hot) {
   module.hot.accept();
